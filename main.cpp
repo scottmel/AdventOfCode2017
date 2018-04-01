@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <fstream>
 #include <string>
+#include "src/corruptionchecksum.h"
 #include "src/inversecaptcha.h"
 #include "src/inputline.h"
 
@@ -41,6 +42,18 @@ int main(int argc , char* argv[]){
 			int result2 = ic->processData2(dataLines);
 			printf("Day 1 Part 1 Result:\n%d\n", result1);
 			printf("Day 1 Part 2 Result:\n%d\n", result2);
+			break;
+		}
+		case 2:{	
+			CorruptionChecksum *cc = new CorruptionChecksum(dataLines);
+			int *ccSize = cc->getSize();
+			printf("Day 2 Input Data (%dx%d):\n", ccSize[0], ccSize[1]);
+			for(int row = 0; row < ccSize[0]; row++){
+				for(int col = 0; col < ccSize[1]; col++){
+					printf("%d\t", cc->getCell(row, col));
+				}
+				printf("\n");
+			}
 			break;
 		}
 		default:{

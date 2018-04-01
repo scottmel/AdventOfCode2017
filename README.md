@@ -1,6 +1,21 @@
 # AdventOfCode2017
 Code for the challenge of Advent of Code 2017: https://adventofcode.com/
 
+To build:
+```
+make main
+```
+
+To run:
+```
+./advent [challenge number] [challenge input file]
+```
+
+For Example:
+```
+./advent 1 data/1.txt
+```
+
 ### Day 1 - *"Inverse Captcha"* 
 
 _**Part 1:**_

@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <fstream>
 #include <string>
+#include "src/spiralmemory.h"
 #include "src/corruptionchecksum.h"
 #include "src/inversecaptcha.h"
 #include "src/inputline.h"
@@ -11,7 +12,7 @@ using namespace std;
 int main(int argc , char* argv[]){
 
 	if(argc != 3){
-		printf("Please pass in only the challenge number and the path to the txt file that contains the challenge data");
+		printf("Please pass in only the challenge number and the path to the txt file that contains the challenge data\n");
 		return 1;
 	}
 	int challenge = atoi(argv[1]);
@@ -58,6 +59,14 @@ int main(int argc , char* argv[]){
 			printf("\nDay 2 Part 1 Result: \n%d\n", result1);
 			int result2 = cc->processData2();
 			printf("\nDay 2 Part 2 Result: \n%d\n", result2);
+			break;
+		}
+		case 3:{
+			SpiralMemory *sm = new SpiralMemory();
+			string square = dataLines->getLine();
+			printf("Day 3 Input Data: %s\n", square.c_str());
+			int distance = sm->stepsFromSquare(square);
+			printf("Day 3 Part 1 Result: %d\n", distance);
 			break;
 		}
 		default:{

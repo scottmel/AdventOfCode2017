@@ -6,27 +6,32 @@ MemoryCell::MemoryCell(MemoryRing *ring, int _spiralIdx){
 		spiralIdx = _spiralIdx;
 		relativeRingIdx = parent->getRelativeIdx(spiralIdx);
 
-		int ri = parent->getRingIndex();
-		int sl = parent->getSideLength();
+		if(parent->getRingIndex() == 0){
+			x = 0;
+			y = 0;
+		} else {
+			int ri = parent->getRingIndex();
+			int sl = parent->getSideLength();
 
-		if(relativeRingIdx <= (sl-1)){
-			x = ri;
-			y = relativeRingIdx + 1 - ri;
-		} 
-		else if(relativeRingIdx <= 2*(sl-1))
-		{
-			x = ri - (relativeRingIdx % (sl-1));
-			y = ri;
-		} 
-		else if(relativeRingIdx < 3*(sl-1))
-		{
-			x = -ri;
-			y = ri - (relativeRingIdx % (sl-1));
-		} 
-		else 
-		{
-			x = (relativeRingIdx % (sl-1)) - ri;
-			y = -ri;
+			if(relativeRingIdx < (sl-1)){
+				x = ri;
+				y = relativeRingIdx + 1 - ri;
+			} 
+			else if(relativeRingIdx < 2*(sl-1))
+			{
+				x = ri - (relativeRingIdx % (sl-1)) - 1;
+				y = ri;
+			} 
+			else if(relativeRingIdx < 3*(sl-1))
+			{
+				x = -ri;
+				y = ri - (relativeRingIdx % (sl-1)) - 1;
+			} 
+			else 
+			{
+				x = (relativeRingIdx % (sl-1))+1 - ri;
+				y = -ri;
+			}
 		}
 	}
 }
@@ -57,7 +62,7 @@ bool MemoryCell::isNeighborsWithCell(MemoryCell *c){
 int MemoryCell::getDistanceFromAccess(){
 	int _x = (x<0) ? -x : x;
 	int _y = (y<0) ? -y : y;
-	return _x + _y;
+	return _x + _y - 1;
 }
 
 MemoryRing::MemoryRing(int index){
@@ -65,6 +70,8 @@ MemoryRing::MemoryRing(int index){
 	sideLen = 1+(2*(ring));
 	capacity = sideLen *sideLen;
 	perimeter = 4 * (sideLen - 1);
+	//special case for ring 0
+	if(perimeter == 0) perimeter = 1;
 
 	cells = new MemoryCell*[perimeter];
 }
@@ -84,10 +91,6 @@ int MemoryRing::getPerimeter(){
 
 int MemoryRing::getRelativeIdx(int index){
 	return perimeter - (capacity - index);
-}
-
-void MemoryRing::addCellAtRelativeIdx(MemoryCell *c, int index){
-	cells[index] = c;
 }
 
 int SpiralMemory::stepsFromSquare(string sq){
@@ -111,6 +114,62 @@ int SpiralMemory::stepsFromSquare(string sq){
 }
 
 int SpiralMemory::spiralMagnitudeTest(string value){
-	
-	return 1;
+	int val = atoi(value.c_str());
+
+	// allocate spiral space assuming we will 
+	// hit > value in fewer than value cells
+	int maxRing = 0;
+	int maxCap = 1;
+	while(maxCap < val){
+		maxRing++;
+		maxCap = (maxRing*2 + 1) * (maxRing*2 + 1);
+	}
+
+	spiral = new MemoryRing*[maxRing];
+
+
+	spiral[0] = new MemoryRing(0);
+	spiral[0]->cells[0] = new MemoryCell(spiral[0], 0);
+	spiral[0]->cells[0]->value = 1;
+
+	int ringIdx = 0;
+	int spiralIdx = 1;
+	int maxVal = 1;
+
+	while(maxVal <= val){
+		if(spiralIdx >= spiral[ringIdx]->getCapacity()){
+			ringIdx++;
+			spiral[ringIdx] = new MemoryRing(ringIdx);
+		}
+
+		int relativeIdx = spiral[ringIdx]->getRelativeIdx(spiralIdx);
+		MemoryCell *c = new MemoryCell(spiral[ringIdx], spiralIdx);
+		spiral[ringIdx]->cells[relativeIdx] = c;
+
+		int newVal = 0;
+
+
+		for(int i = relativeIdx - 1; i >=0; i--){
+			if(c->isNeighborsWithCell(spiral[ringIdx]->cells[i])){
+				newVal += spiral[ringIdx]->cells[i]->value;
+			}
+		}
+		MemoryRing *prevRing = spiral[ringIdx-1];
+		for(int i = 0; i < prevRing->getPerimeter(); i++){
+			if(c->isNeighborsWithCell(prevRing->cells[i])){
+				newVal += prevRing->cells[i]->value;
+			}
+		}
+
+		c->value = newVal;
+
+		// printf("X: %d,\t Y: %d,\t Ring: %d,\t SpiralIdx: %d, RelIdx: %d, Val: %d\n", c->getX(), c->getY(), ringIdx, spiralIdx, relativeIdx, newVal);
+
+		if(newVal > maxVal){
+			maxVal = newVal;
+		}
+		spiralIdx++;
+	}
+
+	return maxVal;
 }

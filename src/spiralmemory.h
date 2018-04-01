@@ -29,18 +29,17 @@ class MemoryCell{
 
 class MemoryRing{
 	private:
-		MemoryCell **cells;
 		int ring;
 		int capacity;
 		int sideLen;
 		int perimeter;
 	public:
+		MemoryCell **cells;
 		MemoryRing(int index);
 		int getRingIndex();
 		int getCapacity();
 		int getSideLength();
 		int getPerimeter();
-		void addCellAtRelativeIdx(MemoryCell *c, int index);
 		int getRelativeIdx(int index);
 };
 

@@ -67,6 +67,8 @@ int main(int argc , char* argv[]){
 			printf("Day 3 Input Data: %s\n", square.c_str());
 			int distance = sm->stepsFromSquare(square);
 			printf("Day 3 Part 1 Result: %d\n", distance);
+			int magTest = sm->spiralMagnitudeTest(square);
+			printf("Day 3 Part 2 Result: %d\n", magTest);
 			break;
 		}
 		default:{

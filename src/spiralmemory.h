@@ -7,23 +7,49 @@
 
 using namespace std;
 
+class MemoryRing;
+
+class MemoryCell{
+	private:
+		int spiralIdx;
+		int relativeRingIdx;
+		int x;
+		int y;
+		MemoryRing *parent;
+	public:
+		MemoryCell(MemoryRing *ring, int _spiralIdx);
+		int getSpiralIdx();
+		int getRelativeRingIdx();
+		int getY();
+		int getX();
+		int getDistanceFromAccess();
+		bool isNeighborsWithCell(MemoryCell *c);
+		int value;
+};
+
 class MemoryRing{
 	private:
+		MemoryCell **cells;
 		int ring;
 		int capacity;
 		int sideLen;
+		int perimeter;
 	public:
 		MemoryRing(int index);
 		int getRingIndex();
 		int getCapacity();
 		int getSideLength();
-		void updateIndex(int index);
-		int getDistanceFromMidlineForSquare(int sq);
+		int getPerimeter();
+		void addCellAtRelativeIdx(MemoryCell *c, int index);
+		int getRelativeIdx(int index);
 };
 
 class SpiralMemory{
+	private:
+		MemoryRing **spiral;
 	public:
 		int stepsFromSquare(string sq);
+		int spiralMagnitudeTest(string value);
 
 };
 

@@ -62,6 +62,12 @@ bool MemoryCell::isNeighborsWithCell(MemoryCell *c){
 int MemoryCell::getDistanceFromAccess(){
 	int _x = (x<0) ? -x : x;
 	int _y = (y<0) ? -y : y;
+	/*
+	  The added -1 doesn't make sense to me. I'm calculating the correct X and Y, 
+	  as demonstrated in the Part 2 code, but without the -1 here, Part 1 is off by one.
+	  I'm thinking it has something to do with them starting at 1 when everything here
+	  starts at 0. I thought I had accounted for it, but maybe I didn't account for it everywhere.
+	*/
 	return _x + _y - 1;
 }
 

@@ -10,6 +10,7 @@ using namespace std;
 class Day1{
 	public:
 		int processData(InputLine *data);
+		int processData2(InputLine *data);
 };
 
 #endif

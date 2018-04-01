@@ -37,8 +37,10 @@ int main(int argc , char* argv[]){
 		case 1:{
 			printf("Day 1 Input Data: %s\n", dataLines->getLine().c_str());
 			Day1 *day = new Day1();
-			int result = day->processData(dataLines);
-			printf("Day 1 Result:\n%d\n", result);
+			int result1 = day->processData(dataLines);
+			int result2 = day->processData2(dataLines);
+			printf("Day 1 Part 1 Result:\n%d\n", result1);
+			printf("Day 1 Part 2 Result:\n%d\n", result2);
 			break;
 		}
 		default:{

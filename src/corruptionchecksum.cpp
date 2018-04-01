@@ -80,9 +80,26 @@ int CorruptionChecksum::getCell(int row, int col){
 }
 
 int CorruptionChecksum::processData(){
-	return 0;
+	int sum = 0;
+	for(int row = 0; row < numRows; row++){
+		int max = -1;
+		int min = -1;
+		for(int col = 0; col < numCols; col++){
+			int val = spreadsheet[row][col];
+			if(val > max){
+				max = val;
+			}
+			if(val < min || min == -1){
+				min = val;
+			}
+		}
+		sum += (max-min);
+	}
+	return sum;
 }
 
 int CorruptionChecksum::processData2(){
+
+	
 	return 0;
 }

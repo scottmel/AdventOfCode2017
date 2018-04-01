@@ -54,6 +54,8 @@ int main(int argc , char* argv[]){
 				}
 				printf("\n");
 			}
+			int result1 = cc->processData();
+			printf("\nDay 2 Part 1 Result: \n%d\n", result1);
 			break;
 		}
 		default:{

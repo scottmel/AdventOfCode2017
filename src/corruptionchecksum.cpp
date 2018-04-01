@@ -99,7 +99,30 @@ int CorruptionChecksum::processData(){
 }
 
 int CorruptionChecksum::processData2(){
+	int sum = 0;
+	for(int row = 0; row < numRows; row++){
+		int val1 = -1;
+		int val2 = -1;
+		for(int col = 0; col < numCols; col++){
+			val1 = spreadsheet[row][col];
+			for(int i = col+1; i < numCols; i++){
+				int v = spreadsheet[row][i];
 
-	
-	return 0;
+				if(val1 % v == 0){
+					val2 = v;
+					break;
+				}
+				if(v % val1 == 0){
+					val2 = val1;
+					val1 = v;
+					break;
+				}
+			}
+			if(val2 != -1){
+				break;
+			}
+		}
+		sum += val1/val2;
+	}
+	return sum;
 }

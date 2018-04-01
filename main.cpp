@@ -56,6 +56,8 @@ int main(int argc , char* argv[]){
 			}
 			int result1 = cc->processData();
 			printf("\nDay 2 Part 1 Result: \n%d\n", result1);
+			int result2 = cc->processData2();
+			printf("\nDay 2 Part 2 Result: \n%d\n", result2);
 			break;
 		}
 		default:{

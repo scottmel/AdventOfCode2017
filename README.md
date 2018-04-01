@@ -1,7 +1,7 @@
 # AdventOfCode2017
 Code for the challenge of Advent of Code 2017: https://adventofcode.com/
 
-##Day 1 - *"Inverse Captcha"* 
+### Day 1 - *"Inverse Captcha"* 
 
 _**Part 1:**_
 
@@ -29,9 +29,10 @@ For example:
 - 123123 produces 12.
 - 12131415 produces 4.
 
-##Day 2 - *"Corruption Checksum"*
+### Day 2 - *"Corruption Checksum"*
 
 _**Part 1:**_
+
 As you walk through the door, a glowing humanoid shape yells in your direction. "You there! Your state appears to be idle. Come help us repair the corruption in this spreadsheet - if we take another millisecond, we'll have to display an hourglass cursor!"
 
 The spreadsheet consists of rows of apparently-random numbers. To make sure the recovery process is on the right track, they need you to calculate the spreadsheet's checksum. For each row, determine the difference between the largest value and the smallest value; the checksum is the sum of all of these differences.

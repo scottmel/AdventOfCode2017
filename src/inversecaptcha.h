@@ -1,5 +1,5 @@
-#ifndef __DAY_1_H__
-#define __DAY_1_H__
+#ifndef __INVERSE_CAPTCHA_H__
+#define __INVERSE_CAPTCHA_H__
 
 #include <stdlib.h>
 #include <cstring>
@@ -7,7 +7,7 @@
 
 using namespace std;
 
-class Day1{
+class InverseCaptcha{
 	public:
 		int processData(InputLine *data);
 		int processData2(InputLine *data);

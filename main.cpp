@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <fstream>
 #include <string>
-#include "src/day1.h"
+#include "src/inversecaptcha.h"
 #include "src/inputline.h"
 
 using namespace std;
@@ -36,9 +36,9 @@ int main(int argc , char* argv[]){
 	switch(challenge){
 		case 1:{
 			printf("Day 1 Input Data: %s\n", dataLines->getLine().c_str());
-			Day1 *day = new Day1();
-			int result1 = day->processData(dataLines);
-			int result2 = day->processData2(dataLines);
+			InverseCaptcha *ic = new InverseCaptcha();
+			int result1 = ic->processData(dataLines);
+			int result2 = ic->processData2(dataLines);
 			printf("Day 1 Part 1 Result:\n%d\n", result1);
 			printf("Day 1 Part 2 Result:\n%d\n", result2);
 			break;

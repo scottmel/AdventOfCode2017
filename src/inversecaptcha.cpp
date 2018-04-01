@@ -1,6 +1,6 @@
-#include "day1.h"
+#include "inversecaptcha.h"
 
-int Day1::processData(InputLine *data){
+int InverseCaptcha::processData(InputLine *data){
 	string line = data->getLine();
 	int len = line.length();
 	char dat[len+1];
@@ -27,7 +27,7 @@ int Day1::processData(InputLine *data){
 	return total;
 }
 
-int Day1::processData2(InputLine *data){
+int InverseCaptcha::processData2(InputLine *data){
 	string line = data->getLine();
 	int len = line.length();
 	char dat[len+1];

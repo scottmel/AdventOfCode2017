@@ -1,14 +1,45 @@
-#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <fstream>
+#include <string>
+#include "src/inputline.h"
 
 using namespace std;
 
 int main(int argc , char* argv[]){
-	if(argc < 2){
-		cerr << "Missing Argument for Challenge Number (1-25)" << endl;
+
+	if(argc != 3){
+		printf("Please pass in only the challenge number and the path to the txt file that contains the challenge data");
 		return 1;
 	}
-	char* challenge = argv[1];
-	cout << "Advent of Code 2017: Challenge " << challenge << endl;
+	int challenge = atoi(argv[1]);
+	char* filepath = argv[2];
+
+	printf("Advent of Code 2017: Challenge %d, input file %s\n", challenge, filepath);
+
+	InputLine *dataLines = NULL;
+	ifstream datafile(filepath);
+	if(datafile.is_open()){
+		string line;
+		while( getline(datafile, line) ){
+			if(dataLines){
+				dataLines->push(new InputLine(line));
+			} else {
+				dataLines = new InputLine(line);
+			}
+		}
+		datafile.close();
+	}
+
+	switch(challenge){
+		case 1:{
+			break;
+		}
+		default:{
+			printf("Invalid challenge index given: %d\n", challenge);
+			return 1;
+		}
+	}
 
 	return 0;
 }

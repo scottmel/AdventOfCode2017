@@ -3,7 +3,7 @@ PROJ = advent
 CXX = g++
 CFLAGS = -g -Wall
 
-advent: main.cpp
+advent: main.cpp src/inputline.cpp
 	$(CXX) $(CFLAGS) $? -o $@
 
 clean:

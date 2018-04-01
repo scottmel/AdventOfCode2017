@@ -9,7 +9,7 @@ MemoryRing::MemoryRing(int index){
 void MemoryRing::updateIndex(int index){
 	ring = index;
 	sideLen = 1+(2*(ring));
-	capacity = sideLen;
+	capacity = sideLen * sideLen;
 }
 
 int MemoryRing::getRingIndex(){
@@ -25,8 +25,11 @@ int MemoryRing::getSideLength(){
 int MemoryRing::getDistanceFromMidlineForSquare(int sq){
 	if(capacity == 1) return 0;
 
-	int maxDist = (sideLen-1)/2;
-	int relativeIdx = capacity - sq - (maxDist - 1);
+	int maxDist = ring;
+	int perimeter = 4 * (sideLen - 1);
+	int offset =  maxDist;
+	int relativeIdx = perimeter - (capacity - sq) - offset;
+	printf("perimeter: %d\noffset: %d\nrelativeIdx: %d\n", perimeter, offset, relativeIdx);
 	if(relativeIdx < 0) relativeIdx *= -1;
 	int quarterPlacement = relativeIdx % (sideLen - 1);
 
@@ -45,7 +48,9 @@ int SpiralMemory::stepsFromSquare(string sq){
 	while(mring->getCapacity() < square){
 		mring->updateIndex(++ring);
 	}
-
-	return ring + mring->getDistanceFromMidlineForSquare(square);
+	printf("Mem Ring Idx: %d, Capacity: %d\n", ring, mring->getCapacity());
+	int dist = mring->getDistanceFromMidlineForSquare(square);
+	printf("Dist from Midline: %d\n", dist);
+	return ring + dist;
 
 }

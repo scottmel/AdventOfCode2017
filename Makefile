@@ -3,16 +3,20 @@ PROJ = advent
 CXX = g++
 CXXFLAGS = -g -Wall
 
-DAY1HEAD = src/inversecaptcha.h
-DAY2HEAD = src/corruptionchecksum.h
-DAY3HEAD = src/spiralmemory.h
+DAY1 = inversecaptcha
+DAY2 = corruptionchecksum
+DAY3 = spiralmemory
 
-DAY1SRC = src/inversecaptcha.cpp
-DAY2SRC = src/corruptionchecksum.cpp
-DAY3SRC = src/spiralmemory.cpp
+DAY1SRC = src/$(DAY1).cpp
+DAY2SRC = src/$(DAY2).cpp
+DAY3SRC = src/$(DAY3).cpp
+
+DAY1HEAD = src/$(DAY1).h $(DAY1SRC)
+DAY2HEAD = src/$(DAY2).h $(DAY2SRC)
+DAY3HEAD = src/$(DAY3).h $(DAY3SRC)
 
 
-main: main.o inputline.o inversecaptcha.o corruptionchecksum.o spiralmemory.o
+main: main.o inputline.o $(DAY1).o $(DAY2).o $(DAY3).o
 	$(CXX) $(CXXFLAGS) -o $(PROJ) $?
 
 main.o: main.cpp $(MAINHEAD)
@@ -21,13 +25,13 @@ main.o: main.cpp $(MAINHEAD)
 inputline.o: src/inputline.h
 	$(CXX) $(CXXFLAGS) -c src/inputline.cpp
 
-inversecaptcha.o: src/inputline.h $(DAY1HEAD)
+$(DAY1).o: src/inputline.h $(DAY1HEAD)
 	$(CXX) $(CXXFLAGS) -c $(DAY1SRC)
 
-corruptionchecksum.o: src/inputline.h $(DAY2HEAD)
+$(DAY2).o: src/inputline.h $(DAY2HEAD)
 	$(CXX) $(CXXFLAGS) -c $(DAY2SRC)
 
-spiralmemory.o: src/inputline.h $(DAY3HEAD)
+$(DAY3).o: src/inputline.h $(DAY3HEAD)
 	$(CXX) $(CXXFLAGS) -c $(DAY3SRC)
 
 clean:

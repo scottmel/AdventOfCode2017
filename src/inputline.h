@@ -6,7 +6,7 @@
 using namespace std;
 
 /*
-	Simple Linked List to keep track of file inputs
+Simple Linked List to keep track of file inputs
 */
 
 class InputLine {

@@ -1,9 +1,9 @@
 # AdventOfCode2017
 Code for the challenge of Advent of Code 2017: https://adventofcode.com/
 
-**Day1** - *"Inverse Captcha"* 
+##Day 1 - *"Inverse Captcha"* 
 
-Part 1:
+_**Part 1:**_
 
 The captcha requires you to review a sequence of digits (your puzzle input) and find the sum of all digits that match the next digit in the list. The list is circular, so the digit after the last digit is the first digit in the list.
 
@@ -15,7 +15,7 @@ For example:
 - 91212129 produces 9 because the only digit that matches the next one is the last digit, 9.
 
 
-Part 2:
+_**Part 2:**_
 
 You notice a progress bar that jumps to 50% completion. Apparently, the door isn't yet satisfied, but it did emit a star as encouragement. The instructions change:
 
@@ -28,3 +28,23 @@ For example:
 - 123425 produces 4, because both 2s match each other, but no other digit has a match.
 - 123123 produces 12.
 - 12131415 produces 4.
+
+##Day 2 - *"Corruption Checksum"*
+
+_**Part 1:**_
+As you walk through the door, a glowing humanoid shape yells in your direction. "You there! Your state appears to be idle. Come help us repair the corruption in this spreadsheet - if we take another millisecond, we'll have to display an hourglass cursor!"
+
+The spreadsheet consists of rows of apparently-random numbers. To make sure the recovery process is on the right track, they need you to calculate the spreadsheet's checksum. For each row, determine the difference between the largest value and the smallest value; the checksum is the sum of all of these differences.
+
+For example, given the following spreadsheet:
+
+```
+5 1 9 5
+7 5 3
+2 4 6 8
+```
+
+- The first row's largest and smallest values are 9 and 1, and their difference is 8.
+- The second row's largest and smallest values are 7 and 3, and their difference is 4.
+- The third row's difference is 6.
+- In this example, the spreadsheet's checksum would be 8 + 4 + 6 = 18.

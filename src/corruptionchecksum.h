@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <cstring>
 #include <stdio.h>
+#include "adventhelper.h"
 #include "inputline.h"
 
 using namespace std;

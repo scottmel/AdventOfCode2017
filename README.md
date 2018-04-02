@@ -13,7 +13,7 @@ To run:
 
 For Example:
 ```
-./advent 1 data/1.txt
+./advent 1 ./data/1.txt
 ```
 
 ### Day 1 - *"Inverse Captcha"* 

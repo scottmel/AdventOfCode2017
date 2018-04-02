@@ -74,8 +74,10 @@ int main(int argc , char* argv[]){
 		}
 		case 4:{
 			PassphraseValidator *pv = new PassphraseValidator();
-			int validCount = pv->countValidPassphrases(dataLines);
+			int validCount = pv->countValidPassphrases(dataLines, 1);
 			printf("Day 4 Part 1 Result: %d\n", validCount);
+			int valid2Count = pv->countValidPassphrases(dataLines, 2);
+			printf("Day 4 Part 2 Result: %d\n", valid2Count);
 			break;
 		}
 		default:{

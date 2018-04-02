@@ -10,8 +10,8 @@ using namespace std;
 
 class PassphraseValidator{
 	public:
-		bool validatePassphrase(string phrase);
-		int countValidPassphrases(InputLine* input);
+		bool validatePassphrase(string phrase, int part);
+		int countValidPassphrases(InputLine* input, int part);
 };
 
 // class PassphraseOrganizer

@@ -31,7 +31,8 @@ void AdventHelper::splitCStringOnChar(const char* cstring, char divider, char** 
 			int subLen = i - prevDiv - 1;
 			char *subStr = new char[subLen];
 			for(int j = i-subLen; j <= i; ++j){
-				if(j == i){
+				// if we get the newline character, it means it's the last split in the line and the newline should be trimmed off
+				if(j == i || cstring[j] == '\n' || cstring[j] == '\r'){
 					subStr[j-(i-subLen)] = '\0';
 				} else {
 					subStr[j-(i-subLen)] = cstring[j];

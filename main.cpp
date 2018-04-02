@@ -6,6 +6,7 @@
 #include "src/corruptionchecksum.h"
 #include "src/inversecaptcha.h"
 #include "src/inputline.h"
+#include "src/passphrasevalidator.h"
 
 using namespace std;
 
@@ -69,6 +70,12 @@ int main(int argc , char* argv[]){
 			printf("Day 3 Part 1 Result: %d\n", distance);
 			int magTest = sm->spiralMagnitudeTest(square);
 			printf("Day 3 Part 2 Result: %d\n", magTest);
+			break;
+		}
+		case 4:{
+			PassphraseValidator *pv = new PassphraseValidator();
+			int validCount = pv->countValidPassphrases(dataLines);
+			printf("Day 4 Part 1 Result: %d\n", validCount);
 			break;
 		}
 		default:{
